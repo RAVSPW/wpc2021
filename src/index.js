@@ -1,3 +1,5 @@
+import {hello} from './greet'
+import {aws_config} from './aws_config'
 import {greet} from './greet';
 import {awsConfig} from './aws_config';
 
@@ -12,9 +14,11 @@ import AWS from 'aws-sdk';
 import {CognitoIdentityCredentials} from 'aws-sdk';
 
 import S3 from 'aws-sdk/clients/s3';
-import { uuid } from 'uuidv4';
+//import { uuid } from 'uuidv4';
+import {v4 as uuidv4 } from 'uuid';
 
 AWS.config.region = awsConfig.Region;
+
 
 const userPool = new CognitoUserPool({
     UserPoolId: awsConfig.UserPoolId,
@@ -157,7 +161,7 @@ const listFiles = () => {
 const uploadToS3 = (file, userId, onProgresChange) => {
     return new Promise((resolve, reject) => {
         const s3 = new S3();
-        const key = `uek-krakow/${userId}/source/${uuid()}/${file.name}`;
+        const key = `uek-krakow/${userId}/source/${uuidv4()}/${file.name}`;
         
         s3.putObject({
             Key: key,
@@ -187,7 +191,7 @@ const getPreviewUrl = (key) => {
 }
 
 const registerUserRequest = {
-    email: 'plmsvhrgdzjsukglhc@miucce.com',
+    email: 'rafalkedracki96@gmail.com',
     pw: '1234qwer',
     website: 'abctestit.pl',
 };
@@ -205,7 +209,7 @@ const confirmAccountBtn = document.querySelector('.confirmAccount');
 confirmAccountBtn.addEventListener('click', () => {
     confirmAccount({
         email: registerUserRequest.email,
-        code: '506075'
+        code: '154353'
     })
         .then(user => console.log(user))
         .catch(err => console.log(err));
