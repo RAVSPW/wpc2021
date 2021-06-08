@@ -1,24 +1,26 @@
 {
-  "name": "web-ui",
+  "name": "testuje",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack build --mode production",
-    "deploy": "aws s3 sync ./dist s3://${APP_BUCKET}/ --acl public-read",
-    "release": "npm run build && npm run deploy"
+    "build:prod": "npx webpack --mode production",
+    "build:dev": "npx webpack --mode development",
+    "release": "aws s3 sync ./dist s3://test209739 --acl public-read",
+    "deploy": "npm run build:dev && npm run release"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "amazon-cognito-identity-js": "^4.6.0",
-    "aws-amplify": "^3.3.26",
-    "aws-sdk": "^2.884.0",
-    "uuidv4": "^6.2.7"
-  },
+  "description": "",
   "devDependencies": {
     "webpack": "^4.0",
-    "webpack-cli": "^4.6.0"
+    "webpack-cli": "^4.7.0"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^5.0.1",
+    "aws-amplify": "^4.0.2",
+    "aws-sdk": "^2.910.0",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.8"
   }
 }
